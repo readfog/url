@@ -3,14 +3,16 @@ package controller
 import (
 	"net/http"
 
-	"github.com/adhocore/urlsh/response"
-	"github.com/adhocore/urlsh/service/url"
+	"github.com/readfog/url/assets"
+	"github.com/readfog/url/response"
+	"github.com/readfog/url/service/url"
 )
 
 // Index is the controller for root aka index page
 // It responds to `GET /` and does not require auth token.
 func Index(res http.ResponseWriter, req *http.Request) {
-	http.ServeFile(res, req, "assets/home.html")
+	// http.ServeFile(res, req, "assets/home.html")
+	FileFromFS(res, req, "home.html")
 }
 
 // Banner is the controller for favicon.ico
@@ -28,7 +30,8 @@ func Favicon(res http.ResponseWriter, req *http.Request) {
 // Robots is the controller for robots.txt
 // It responds to `GET /robots.txt` and does not require auth token.
 func Robots(res http.ResponseWriter, req *http.Request) {
-	http.ServeFile(res, req, "assets/robots.txt")
+	// http.ServeFile(res, req, "assets/robots.txt")
+	FileFromFS(res, req, "robots.txt")
 }
 
 // Status is the controller for health/status check
@@ -60,4 +63,15 @@ func ServeShortURL(res http.ResponseWriter, req *http.Request) {
 
 	go url.IncrementHits(urlModel)
 	http.Redirect(res, req, urlModel.OriginURL, status)
+}
+
+// FileFromFS writes the specified file from http.FileSytem into the body stream in an efficient way.
+func FileFromFS(res http.ResponseWriter, req *http.Request, filepath string) {
+	defer func(old string) {
+		req.URL.Path = old
+	}(req.URL.Path)
+
+	req.URL.Path = filepath
+	fs := assets.Assets.HTTPFileSystem()
+	http.FileServer(fs).ServeHTTP(res, req)
 }

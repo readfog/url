@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>URLSH | Shorten a long and complex URL</title>
+  <title>短網址</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Free and opensource GOlang URL shortener service with UI, API, Cache, Hits Counter and forwarder">
-  <meta property="og:url" content="https://urlssh.xyz" />
-  <meta property="og:title" content="URLSH | Shorten a long and complex URL for free" />
-  <meta property="og:description" content="Free and opensource GOlang URL shortener service with UI, API, Cache, Hits Counter and forwarder" />
+  <meta name="description" content="閱坊短網址服務">
+  <meta property="og:url" content="https://url.readfog.com" />
+  <meta property="og:title" content="短網址服務" />
+  <meta property="og:description" content="閱坊短網址服務" />
   <meta property="og:image" content="https://urlssh.xyz/banner.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
@@ -34,22 +34,22 @@
 <div class="container is-fluid xhas-text-centered">
   <div class="hero">
     <div class="hero-body">
-      <h1 class="title">Shorten a long URL</h1>
+      <h1 class="title">短網址</h1>
       <form id="url-form" method="POST" onsubmit="return shortenUrl()">
         <div class="field">
           <div class="control has-icons-left">
             <span class="icon"><i class="fas fa-link is-left"></i></span>
-            <input class="input is-danger is-medium" id="long" type="url" required="required" placeholder="Long URL here" name="url" autocomplete="off">
+            <input class="input is-danger is-medium" id="long" type="url" required="required" placeholder="原始鏈接" name="url" autocomplete="off">
           </div>
-          <p class="help is-danger">URL is required, only ftp and http(s) supported</p>
+          <p class="help is-danger">原始鏈接（必填項）, 僅支持 FTP 和 HTTP/HTTPS 網絡協議</p>
         </div>
 
         <div class="field">
           <div class="control has-icons-left">
             <span class="icon"><i class="fas fa-tags is-left"></i></span>
-            <input class="input is-success is-medium" type="text" placeholder="CSV keywords here" name="keywords" autocomplete="off">
+            <input class="input is-success is-medium" type="text" placeholder="關鍵詞" name="keywords" autocomplete="off">
           </div>
-          <p class="help is-success">Keywords are optional, if provided can be used to search</p>
+          <p class="help is-success">關鍵詞(可選項), 如果填寫可用於搜索</p>
         </div>
 
         <div class="field">
@@ -57,28 +57,25 @@
             <span class="icon"><i class="fas fa-calendar is-left"></i></span>
             <input class="input is-info is-medium" type="date" name="expires_on">
           </div>
-          <p class="help is-info">Expiry date is optional, if provided short URLs expire on that date</p>
+          <p class="help is-info">有效日期（可選項）, 如果提供服務過期失效</p>
         </div>
 
         <div class="field">
           <div class="control">
-            <button id="button" class="button is-primary">Shorten</button>
+            <button id="button" class="button is-primary">生成</button>
             <button id="copy" class="button is-success is-hidden" onclick="return copyShortUrl()">
-              Copy Short URL
+              複製短網址
             </button>
           </div>
           <p class="help is-medium" id="info">&nbsp;</p>
         </div>
       </form>
-      <h4 class="subtitle">
-        Source code: <a target="_blank" rel="noopener" href="https://urlssh.xyz/v473VY">adhocore/urlsh</a>
-      </h4>
       <hr>
       <table class="table">
         <thead>
           <tr>
-            <th class="th-code">Short URL</th>
-            <th class="th-url">Origin URL</th>
+            <th class="th-code">短網址</t>
+            <th class="th-url">原始鏈接</th>
           </tr>
         </thead>
         <tbody id="history">
@@ -117,7 +114,7 @@ function shortenUrl() {
 
 function copyShortUrl() {
   navigator.clipboard.writeText(copy.dataset.shortUrl).then(_ => {
-    copy.innerText = 'Copied'
+    copy.innerText = '已複製'
     setTimeout(_ => copy.classList.add('is-hidden'), 1500)
   })
 
@@ -137,7 +134,7 @@ function renderResponse(data) {
   }
 
   info.innerHTML = '&nbsp;'
-  copy.innerText = `Copy ${document.location.host}/${data.short_code}`
+  copy.innerText = `複製 ${document.location.host}/${data.short_code}`
   copy.classList.remove('is-hidden')
   copy.dataset.shortUrl = `${base}/${data.short_code}`
 
@@ -155,7 +152,7 @@ function renderHistory(code, url, idx) {
   const row  = hist.insertRow(idx)
 
   row.insertCell().innerHTML = `<a href="${base}/${code}" target="_blank" title="${url}">${code}</a>
-    <span class="icon"><i class="fas fa-copy copy-url" title="Copy URL" data-short-url="${base}/${code}"></i></span>`
+    <span class="icon"><i class="fas fa-copy copy-url" title="複製" data-short-url="${base}/${code}"></i></span>`
   row.insertCell().innerText = url.length > 150 ? url.substring(0, 150) + '...' : url
 }
 

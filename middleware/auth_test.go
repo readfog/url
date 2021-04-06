@@ -8,9 +8,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/adhocore/urlsh/common"
-	"github.com/adhocore/urlsh/controller"
-	"github.com/adhocore/urlsh/response"
+	"github.com/readfog/url/common"
+	"github.com/readfog/url/controller"
+	"github.com/readfog/url/response"
 )
 
 func tester(token string, expectStatus int, t *testing.T) *httptest.ResponseRecorder {

@@ -5,8 +5,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/adhocore/urlsh/common"
-	"github.com/adhocore/urlsh/response"
+	"github.com/readfog/url/common"
+	"github.com/readfog/url/response"
 )
 
 // AdminURIPrefix is the uri to intercept by auth middleware

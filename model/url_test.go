@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/adhocore/urlsh/common"
+	"github.com/readfog/url/common"
 )
 
 func TestURL_IsActive(t *testing.T) {

@@ -5,8 +5,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/adhocore/urlsh/model"
-	"github.com/adhocore/urlsh/util"
+	"github.com/readfog/url/model"
+	"github.com/readfog/url/util"
 )
 
 func TestConnection(t *testing.T) {

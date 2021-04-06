@@ -9,7 +9,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/adhocore/urlsh/model"
+	"github.com/readfog/url/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"

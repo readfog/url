@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/adhocore/urlsh/common"
+	"github.com/readfog/url/common"
 )
 
 func tester(input URLInput, expect error, t *testing.T) {

@@ -3,13 +3,15 @@ package router
 import (
 	"net/http"
 
-	"github.com/adhocore/urlsh/common"
-	"github.com/adhocore/urlsh/controller"
-	"github.com/adhocore/urlsh/middleware"
+	"github.com/readfog/url/common"
+	"github.com/readfog/url/controller"
+	"github.com/readfog/url/middleware"
 )
 
+// var contentStatic, _ = fs.Sub(fsys, )
 var routes = map[string]http.HandlerFunc{
-	"GET /":                  controller.Index,
+	"GET /": controller.Index,
+	// "GET /":                  http.File(fsys).ServeHTTP,
 	"GET /banner.png":        controller.Banner,
 	"GET /favicon.ico":       controller.Favicon,
 	"GET /robots.txt":        controller.Robots,

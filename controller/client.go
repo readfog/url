@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/adhocore/urlsh/response"
-	"github.com/adhocore/urlsh/service/url"
+	"github.com/readfog/url/response"
+	"github.com/readfog/url/service/url"
 )
 
 // CreateShortURL is the controller for client to create short url from long url

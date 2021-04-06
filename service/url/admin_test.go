@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/adhocore/urlsh/request"
+	"github.com/readfog/url/request"
 )
 
 func prepare() request.URLFilter {

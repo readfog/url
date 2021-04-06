@@ -18,7 +18,7 @@ Just visit [urlssh.xyz](https://urlssh.xyz). You can also integrate API for prog
 
 If you live inside the command line terminal, you can install a client:
 ```sh
-go get github.com/adhocore/urlsh/cmd/urlshc
+go get github.com/readfog/url/cmd/urlshc
 ```
 
 Make sure `$GOPATH` or `$HOME/go/bin` is in your `$PATH` or `%path%`, then use it like so:

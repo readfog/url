@@ -3,11 +3,11 @@ package url
 import (
 	"net/http"
 
-	"github.com/adhocore/urlsh/cache"
-	"github.com/adhocore/urlsh/common"
-	"github.com/adhocore/urlsh/model"
-	"github.com/adhocore/urlsh/orm"
-	"github.com/adhocore/urlsh/request"
+	"github.com/readfog/url/cache"
+	"github.com/readfog/url/common"
+	"github.com/readfog/url/model"
+	"github.com/readfog/url/orm"
+	"github.com/readfog/url/request"
 )
 
 // ListURLsFilteredFromRequest gets list of urls filtered using http.Request query params

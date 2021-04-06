@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/adhocore/urlsh/model"
 	"github.com/gomodule/redigo/redis"
+	"github.com/readfog/url/model"
 )
 
 var once sync.Once

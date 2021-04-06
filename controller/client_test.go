@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/adhocore/urlsh/common"
+	"github.com/readfog/url/common"
 )
 
 func TestCreateShortURL(t *testing.T) {

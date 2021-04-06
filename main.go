@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/adhocore/urlsh/router"
+	"github.com/readfog/url/router"
 )
 
 func getPort() string {
@@ -14,7 +14,7 @@ func getPort() string {
 		return port
 	}
 
-	return "2000"
+	return "1235"
 }
 
 func main() {

@@ -3,8 +3,8 @@ package controller
 import (
 	"net/http"
 
-	"github.com/adhocore/urlsh/response"
-	"github.com/adhocore/urlsh/service/url"
+	"github.com/readfog/url/response"
+	"github.com/readfog/url/service/url"
 )
 
 // ListURLs is the controller for url listing endpoint using filters from http.Request

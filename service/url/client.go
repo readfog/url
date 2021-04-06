@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/adhocore/urlsh/cache"
-	"github.com/adhocore/urlsh/common"
-	"github.com/adhocore/urlsh/model"
-	"github.com/adhocore/urlsh/orm"
-	"github.com/adhocore/urlsh/request"
-	"github.com/adhocore/urlsh/util"
+	"github.com/readfog/url/cache"
+	"github.com/readfog/url/common"
+	"github.com/readfog/url/model"
+	"github.com/readfog/url/orm"
+	"github.com/readfog/url/request"
+	"github.com/readfog/url/util"
 	"gorm.io/gorm"
 )
 
