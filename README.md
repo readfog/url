@@ -1,50 +1,50 @@
-# urlsh
+# url
 
-**[urlsh](https://urlssh.xyz)** is URL shortener application built on [Go](https://golang.org) language.
+**[url](https://url.readfog.com)** is URL shortener application built on [Go](https://golang.org) language.
 
 It does not use external libraries except the [`gorm`](http://gorm.io) for
 [`postgres`](https://github.com/go-gorm/postgres) database and minimal redis
 module [redigo](https://github.com/gomodule/redigo).
 
-![URLSH](./assets/urlsh.png)
+![URLSH](./assets/banner.png)
 
 # Usage
 
 #### Web client
 
-Just visit [urlssh.xyz](https://urlssh.xyz). You can also integrate API for programmatic usage.
+Just visit [url.readfog.com](https://url.readfog.com). You can also integrate API for programmatic usage.
 
 #### Terminal client
 
 If you live inside the command line terminal, you can install a client:
 ```sh
-go get github.com/readfog/url/cmd/urlshc
+go get github.com/readfog/url/cmd/urlc
 ```
 
 Make sure `$GOPATH` or `$HOME/go/bin` is in your `$PATH` or `%path%`, then use it like so:
 ```sh
 # show help
-urlshc -h
+urlc -h
 
 # shorten a url
-urlshc -url 'https://your.long.url/here'
+urlc -url 'https://your.long.url/here'
 
 # shorten a url with keywords and expiry date
-urlshc -url 'https://your.long.url/here' -keywords 'word-1,word2' -expires '2022-12-31'
+urlc -url 'https://your.long.url/here' -keywords 'word-1,word2' -expires '2022-12-31'
 
-# if you have self hosted or local instance of urlsh, pass in URLSH_HOST (with domain only)
-URLSH_HOST=https://your.urlsh-instance.com urlshc -url 'https://your.long.url/here'
+# if you have self hosted or local instance of urlsh, pass in URL_HOST (with domain only)
+URL_HOST=https://your.url-instance.com urlc -url 'https://your.long.url/here'
 ```
 
-Read below for self hosting, API integration and/or contributing to *urlsh*.
+Read below for self hosting, API integration and/or contributing to *url*.
 
 ___
 
 ## Getting source
 
 ```sh
-git clone git@github.com:adhocore/urlsh.git
-cd urlsh
+git clone git@github.com:readfog/url.git
+cd url
 ```
 
 ## Configuring
@@ -62,7 +62,7 @@ DATABASE_URL=postgres://user:pass@host:port/dbname
 When running *urlsh* with docker-compose, the **preferred** way, `DATABASE_URL` is
 automatically set from [`POSTGRES_*`](https://hub.docker.com/_/postgres) variables.
 
-> Please note that `urlsh` does not ship with `.env` loader so to run it in bare metal,
+> Please note that `url` does not ship with `.env` loader so to run it in bare metal,
 one needs to use `export KEY=VALUE` or `source .env` manually.
 
 If `REDIS_URL` is provided with `redis://host:port`, then it will cache popular urls,
@@ -141,7 +141,7 @@ Creates a new short code for given URL.
 {
     "status": 200,
     "short_code": "qaFxz",
-    "short_url": "http://localhost:2000/qaFxz"
+    "short_url": "http://localhost:1235/qaFxz"
 }
 ```
 

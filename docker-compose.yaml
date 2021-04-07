@@ -2,23 +2,23 @@
 version: '3.2'
 
 services:
-  urlsh:
-    image: golang:1.14
+  url:
+    image: golang:1.16
     working_dir: /go/src/app
     command: sh -c 'sleep 2 && go run main.go'
     ports:
-      - ${PORT:-2000}:${PORT:-2000}
+      - ${PORT:-1235}:${PORT:-1235}
     volumes:
       - .:/go/src/app:delegated
     env_file:
       - .env
     environment:
-      - POSTGRES_HOST=urlshdb
+      - POSTGRES_HOST=urldb
     depends_on:
-      - urlshdb
-      - urlshcache
+      - urldb
+      - urlcache
 
-  urlshdb:
+  urldb:
     image: postgres:12.4
     ports:
       - 2001:5432
@@ -28,9 +28,9 @@ services:
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-postgres}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
-      - POSTGRES_DB=urlsh
+      - POSTGRES_DB=url
 
-  urlshcache:
+  urlcache:
     image: redis:alpine
     ports:
       - 2002:6379

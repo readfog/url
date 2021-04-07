@@ -1,6 +1,7 @@
 package router
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/readfog/url/common"
@@ -24,6 +25,7 @@ var routes = map[string]http.HandlerFunc{
 // locateHandler locates controller for given http request method and path
 // It also handles not found case and short code redirection.
 func locateHandler(method string, path string) http.HandlerFunc {
+	log.Printf("locateHandler method=%v, path=%v", method, path)
 	if handlerFunc, ok := routes[method+" "+path]; ok {
 		return handlerFunc
 	}

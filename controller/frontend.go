@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/readfog/url/assets"
@@ -18,13 +19,15 @@ func Index(res http.ResponseWriter, req *http.Request) {
 // Banner is the controller for favicon.ico
 // It responds to `GET /banner.png` and does not require auth token.
 func Banner(res http.ResponseWriter, req *http.Request) {
-	http.ServeFile(res, req, "assets/urlsh-light.png")
+	// http.ServeFile(res, req, "assets/urlsh-light.png")
+	FileFromFS(res, req, "banner.png")
 }
 
 // Favicon is the controller for favicon.ico
 // It responds to `GET /favicon.ico` and does not require auth token.
 func Favicon(res http.ResponseWriter, req *http.Request) {
-	http.ServeFile(res, req, "assets/u.png")
+	// http.ServeFile(res, req, "assets/u.png")
+	FileFromFS(res, req, "logo.png")
 }
 
 // Robots is the controller for robots.txt
@@ -37,13 +40,13 @@ func Robots(res http.ResponseWriter, req *http.Request) {
 // Status is the controller for health/status check
 // It responds to `GET /status` and does not require auth token.
 func Status(res http.ResponseWriter, _ *http.Request) {
-	response.JSON(res, http.StatusOK, response.Body{"message": "it works"})
+	response.JSON(res, http.StatusOK, response.Body{"message": "正常"})
 }
 
 // NotFound is the controller for handling unregistered request path
 // It is auto triggered if router does not find controller for request path.
 func NotFound(res http.ResponseWriter, _ *http.Request) {
-	response.JSON(res, http.StatusNotFound, response.Body{"message": "requested resource is not available"})
+	response.JSON(res, http.StatusNotFound, response.Body{"message": "請求資源未找到"})
 }
 
 // ServeShortURL is the controller for serving short urls
@@ -57,11 +60,12 @@ func ServeShortURL(res http.ResponseWriter, req *http.Request) {
 	}
 
 	if status != http.StatusMovedPermanently {
-		response.JSON(res, status, response.Body{"message": "requested resource is not available"})
+		response.JSON(res, status, response.Body{"message": "請求資源未找到"})
 		return
 	}
 
 	go url.IncrementHits(urlModel)
+	log.Printf("ServeShortURL urlModel=%+v, cached=%v", urlModel, cached)
 	http.Redirect(res, req, urlModel.OriginURL, status)
 }
 

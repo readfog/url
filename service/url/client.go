@@ -2,6 +2,7 @@ package url
 
 import (
 	"encoding/json"
+	"log"
 	"net"
 	"net/http"
 	"os"
@@ -52,12 +53,14 @@ func CreateURLShortCode(input request.URLInput) (string, error) {
 // It returns origin url if exists and is active, http error code otherwise.
 func LookupOriginURL(shortCode string) (model.URL, int, bool) {
 	var urlModel model.URL
-
+	log.Printf("LookupOriginURL shortCode=%v", shortCode)
 	if cacheModel, status := cache.LookupURL(shortCode); status != 0 {
+		log.Print("cache")
 		return cacheModel, status, true
 	}
 
 	if status := orm.Connection().Where("short_code = ?", shortCode).First(&urlModel); status.RowsAffected == 0 {
+		log.Print("from db")
 		return urlModel, http.StatusNotFound, false
 	}
 

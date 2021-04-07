@@ -1,1 +1,1 @@
-web: bin/urlsh
+web: bin/url

@@ -2,8 +2,10 @@
 
 version: '3'
 
+output: 'prefixed'
+
 vars:
-  GREETING: Hello, World!
+  UrlExe: url{{exeExt}} 
 
 tasks:
   default:
@@ -15,5 +17,17 @@ tasks:
   run:
     desc: run web server
     cmds:
-      - DATABASE_URL=postgres://postgres:123456@localhost:5432/urlsh go run main.go
+      - DATABASE_URL=postgres://postgres:123456@localhost:5432/url APP_ADMIN_TOKEN=abcd go run main.go
+    silent: false
+
+  prod:
+    desc: product 
+    cmds:
+      - APP_ENV=prod DATABASE_URL=postgres://postgres:123456@localhost:5432/url APP_ADMIN_TOKEN=abcd go run main.go 
+    silent: false
+
+  release:
+    desc: release
+    cmds:
+      - GOOS=linux go build -o ./release/{{.UrlExe}} -ldflags="-w -s" main.go  
     silent: false

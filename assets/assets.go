@@ -10,7 +10,7 @@ import (
 // "GET /favicon.ico":       controller.Favicon,
 // "GET /robots.txt":        controller.Robots,
 
-//go:embed home.html urlsh.png u.png robots.txt
+//go:embed home.html banner.png logo.png robots.txt
 
 var fs embed.FS
 
